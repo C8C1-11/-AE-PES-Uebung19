@@ -4,9 +4,39 @@
 #include "pch.h"
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	// This decides how precise pi will be.
+	int depth = 0;
+	double iterimResult = 0;
+
+	cout << "depth: ";
+	// Ask for depth.
+	cin >> depth;
+	cout << "\n";
+
+	int mathSign = depth % 2 != 0 ? 1 : -1;
+
+	// First we make depth zero-based:
+	// 1 + 0depth * 2 * 1mathSign = 1denominator
+	// => the last needed denominator
+	for (--depth; depth >= 0; depth--) {
+		int denominator = 1 + depth * 2;
+		iterimResult += ((double)1 / denominator) * mathSign;
+		// Comment this out for visualization.
+		//cout << mathSign << " * " << "1/" << denominator << ",";
+		// Swap math sign.
+		mathSign *= -1;
+	}
+
+	// Calculate pi.
+	double pi = iterimResult * 4;
+
+	cout << "\npi: " << pi << "\n";
+	system("pause");
+	return 0;
 }
 
 // Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"
