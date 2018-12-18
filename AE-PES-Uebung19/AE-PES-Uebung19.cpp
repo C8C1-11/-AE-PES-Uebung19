@@ -6,6 +6,8 @@
 
 using namespace std;
 
+const bool VISUALIZATION = false;
+
 int main()
 {
 	// This decides how precise pi will be.
@@ -15,7 +17,6 @@ int main()
 	cout << "depth: ";
 	// Ask for depth.
 	cin >> depth;
-	cout << "\n";
 
 	int mathSign = depth % 2 != 0 ? 1 : -1;
 
@@ -25,16 +26,21 @@ int main()
 	for (--depth; depth >= 0; depth--) {
 		int denominator = 1 + depth * 2;
 		iterimResult += ((double)1 / denominator) * mathSign;
-		// Comment this out for visualization.
-		//cout << mathSign << " * " << "1/" << denominator << ",";
+
+		if (VISUALIZATION)
+			cout << mathSign << " * " << "1/" << denominator << ",";
+
 		// Swap math sign.
 		mathSign *= -1;
 	}
 
+	if (VISUALIZATION)
+		cout << endl;
+
 	// Calculate pi.
 	double pi = iterimResult * 4;
 
-	cout << "\npi: " << pi << "\n";
+	cout << "pi: " << pi << "\n";
 	system("pause");
 	return 0;
 }
